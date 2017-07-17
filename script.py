@@ -15,7 +15,7 @@ num_ingredients = 3
 
 robot_belief = [1/num_theta for i in range(num_theta)]
 
-reward_set = [((0,3,2),0), ((0,2,2), 1)]
+reward_set = [((2,3,0),0), ((2,2,0), 1)]
 initial_world_state = (0,0,0)
 
 human_behavior = "boltzmann"
