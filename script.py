@@ -37,7 +37,7 @@ epsilon = math.pow(0.95, 3)
 
 for _ in range(0, 1):
 #KEEP THESE PARAMETERS FOR NOW!!
-	solver = POMCP_Solver(0.95, epsilon, 500000, initial_history, game, 0.5, 5)
+	solver = POMCP_Solver(0.95, epsilon, 500000, initial_history, game, 0.35, 5)
 	solver.search()
 	data = solver.data
 	f = open('data-coor-pomcp.txt', 'w')
