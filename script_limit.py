@@ -33,9 +33,9 @@ epsilon = math.pow(0.95, 2)
 # print("Number Of Ingredients: 5")
 
 l = []
-for _ in range(0, 3):
+for _ in range(0, 20):
 #KEEP THESE PARAMETERS FOR NOW!!
-	solver = POMCP_Solver(0.95, epsilon, 30000, initial_history, game, 9, 5)
+	solver = POMCP_Solver(0.95, epsilon, 25000, initial_history, game, 10, 5)
 	solver.search()
 	print(_)
 	data = solver.data

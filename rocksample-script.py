@@ -9,7 +9,7 @@ import math
 import pickle
 
 big_l = []
-for _ in range(0, 2):
+for _ in range(0, 20):
 	initial_state = (0,0)
 	rock_vector = [((2,1),0), ((1,2),1)]
 	theta_set = [[1,0],[0.3,0.8]]
