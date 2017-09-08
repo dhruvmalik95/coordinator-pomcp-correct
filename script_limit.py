@@ -14,7 +14,7 @@ num_ingredients = 3
 #num_ingredients = 5
 
 robot_belief = [1/num_theta for i in range(num_theta)]
-reward_set = [((2,0,2),0), ((0,2,1),1)]
+reward_set = [((1,2,0),0), ((2,1,1),1)]
 initial_world_state = (0,0,0)
 human_behavior = "boltzmann"
 
@@ -32,14 +32,18 @@ epsilon = math.pow(0.95, 2)
 # print("Number Of Theta: 6")
 # print("Number Of Ingredients: 5")
 
-for _ in range(0, 1):
+l = []
+for _ in range(0, 3):
 #KEEP THESE PARAMETERS FOR NOW!!
-	solver = POMCP_Solver(0.95, epsilon, 2000000, initial_history, game, 300, 5)
+	solver = POMCP_Solver(0.95, epsilon, 100000, initial_history, game, 150, 5)
 	solver.search()
+	print(_)
 	data = solver.data
-	f = open('data-coor-pomcp.txt', 'w')
-	f.write(str(data))
-	print("_____________________")
+	l.append(data)
+
+f = open('data-coor-pomcp.txt', 'w')
+f.write(str(data))
+print("_____________________")
 
 """
 Things to keep in mind:
