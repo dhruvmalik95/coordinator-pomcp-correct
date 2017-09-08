@@ -7,33 +7,34 @@ from robotnode import *
 from pomcp import *
 import math
 
-num_theta = 2
-#num_theta = 6
-horizon = 0
-num_ingredients = 3
-#num_ingredients = 5
+l = []
+for _ in range(0, 20):
+	num_theta = 2
+	#num_theta = 6
+	horizon = 0
+	num_ingredients = 3
+	#num_ingredients = 5
 
-robot_belief = [1/num_theta for i in range(num_theta)]
-reward_set = [((1,2,0),0), ((2,1,1),1)]
-initial_world_state = (0,0,0)
-human_behavior = "boltzmann"
+	robot_belief = [1/num_theta for i in range(num_theta)]
+	reward_set = [((1,2,0),0), ((2,1,1),1)]
+	initial_world_state = (0,0,0)
+	human_behavior = "boltzmann"
 
 
-humanPolicy = HumanPolicy(num_actions = num_ingredients + 1, behavior = human_behavior)
-robot = Robot(robot_belief, num_actions = num_ingredients + 1)
-game = Game(robot, humanPolicy, initial_world_state, num_theta, num_ingredients, reward_set)
+	humanPolicy = HumanPolicy(num_actions = num_ingredients + 1, behavior = human_behavior)
+	robot = Robot(robot_belief, num_actions = num_ingredients + 1)
+	game = Game(robot, humanPolicy, initial_world_state, num_theta, num_ingredients, reward_set)
 
-initial_history = Root(game, [((0,0,0),0), ((0,0,0),1)], 0)
+	initial_history = Root(game, [((0,0,0),0), ((0,0,0),1)], 0)
 
-#make sure to change exploration accordingly - also what should the epsilon value be?
-epsilon = math.pow(0.95, 2)
+	#make sure to change exploration accordingly - also what should the epsilon value be?
+	epsilon = math.pow(0.95, 2)
 
 # print("Required Horizon: 4")
 # print("Number Of Theta: 6")
 # print("Number Of Ingredients: 5")
 
-l = []
-for _ in range(0, 20):
+
 #KEEP THESE PARAMETERS FOR NOW!!
 	solver = POMCP_Solver(0.95, epsilon, 25000, initial_history, game, 10, 5)
 	solver.search()
