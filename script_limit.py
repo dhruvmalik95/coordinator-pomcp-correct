@@ -8,16 +8,16 @@ from pomcp import *
 import math
 
 l = []
-for _ in range(0, 20):
-	num_theta = 2
+for _ in range(0, 1):
+	num_theta = 4
 	#num_theta = 6
 	horizon = 0
-	num_ingredients = 3
+	num_ingredients = 4
 	#num_ingredients = 5
 
 	robot_belief = [1/num_theta for i in range(num_theta)]
-	reward_set = [((1,2,0),0), ((2,1,1),1)]
-	initial_world_state = (0,0,0)
+	reward_set = [((1,2,1,0),0), ((1,0,2,1),1), ((1,1,1,0),2), ((1,0,2,0),3)]
+	initial_world_state = (0,0,0,0)
 	human_behavior = "boltzmann"
 
 
@@ -25,7 +25,7 @@ for _ in range(0, 20):
 	robot = Robot(robot_belief, num_actions = num_ingredients + 1)
 	game = Game(robot, humanPolicy, initial_world_state, num_theta, num_ingredients, reward_set)
 
-	initial_history = Root(game, [((0,0,0),0), ((0,0,0),1)], 0)
+	initial_history = Root(game, [((0,0,0,0),0), ((0,0,0,0),1), ((0,0,0,0),2), ((0,0,0,0),3)], 0)
 
 	#make sure to change exploration accordingly - also what should the epsilon value be?
 	epsilon = math.pow(0.95, 2)
@@ -36,7 +36,7 @@ for _ in range(0, 20):
 
 
 #KEEP THESE PARAMETERS FOR NOW!!
-	solver = POMCP_Solver(0.95, epsilon, 25000, initial_history, game, 10, 5)
+	solver = POMCP_Solver(0.95, epsilon, 30000, initial_history, game, 0.2, 5)
 	solver.search()
 	print(_)
 	data = solver.data
