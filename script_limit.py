@@ -8,7 +8,7 @@ from pomcp import *
 import math
 
 l = []
-for _ in range(0, 1):
+for _ in range(0, 10):
 	num_theta = 4
 	#num_theta = 6
 	horizon = 0
